@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package v1;
+
+message ErrorInfo {
+  string reason = 1;
+  int32 code = 2;
+}
+
+service DiscountService {
+  rpc Calculate (DiscountRequest) returns (DiscountResponse) {}
+}
+
+message DiscountRequest {
+  string user_id = 1;
+  string product_id = 2;
+}
+
+message Discount {
+  int32 percent = 1;
+  int64 value = 2;
+}
+
+message DiscountResponse {
+  string user_id = 1;
+  string product_id = 2;
+  Discount discount = 3;
+  ErrorInfo err = 4;
+}
